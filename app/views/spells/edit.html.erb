@@ -1,0 +1,14 @@
+<h1>Edit <%= @spell.name%></h1>
+
+<p>
+<%= link_to 'All Spells', spells_path %> |
+<%= link_to "Home", root_path %>    
+</p>  
+
+<%= render 'form', spell: @spell %>
+
+<div class="actions">
+       <%= form_with model: @spell, method: :delete, local: true do |f| %>
+            <%= f.submit "Delete Spell" %>
+            <% end %>
+     </div>

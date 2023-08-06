@@ -1,0 +1,43 @@
+<h1>Add Spell to <%= @book.name%></h1>
+
+<p>
+<%= link_to "Back to #{@book.name}", book_path(@book) %> 
+<%= link_to "Home", root_path %>    
+</p>  
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Spellname</th>
+      <th>School</th>
+     <th>Classes</th> 
+      <th>Concentration</th>
+      <th colspan="1"></th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Spell.all.each do |spell| %> <!-- Make this work -->
+      <tr>
+        <td><%= spell.level %></td>
+         <td><%= link_to spell.name, spell %></td>
+        <td><%= spell.school %></td>
+        <td><%= spell.spellclass_string %></td>       
+           <td><%= spell.concentration %></td>
+         
+           <td>
+                <% if !@book.spells.include?(spell) %>
+               <%= form_with model: spell, url: book_spell_create_path(@book.id, spell.id), local: true do |f| %>
+            <%= f.hidden_field :spell_id, :value => spell.id %>
+            <%= f.submit 'Add to Book' %>     <% end %> 
+               <% else %>
+               <% end %>
+         </td>
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

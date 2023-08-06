@@ -1,0 +1,37 @@
+
+<h1>View <%= @spell.name %></h1>
+
+<p>
+<%= link_to 'All Spells', spells_path %> |
+<%= link_to "Home", root_path %>    
+</p>
+
+
+<p>
+  <strong>Level:</strong>
+  <%= @spell.level %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @spell.school %>
+</p>
+
+<p>
+  <strong>Concentration:</strong>
+  <%= @spell.concentration %>
+</p>
+
+<p>
+  <strong>Classes:</strong>
+  <%= @spell.spellclass_string %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @spell.description %>
+</p>
+
+<p>
+  <%= link_to "Add #{@spell.name} to Book", spell_spell_add_path %>  
+</p>

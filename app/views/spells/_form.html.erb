@@ -1,0 +1,62 @@
+<%= form_with(model: spell, local: true) do |form| %>
+  <% if spell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spell.errors.count, "error") %> prohibited this spell from being saved:</h2>
+
+      <ul>
+        <% spell.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+<div class="field">
+    <%= form.label :level %> <br>
+    <%= form.select :level, [0,1,2,3,4,5,6,7,8,9] %>    
+  </div>
+<br>
+<div class="field">
+    <%= form.label :name %> <br>
+    <%= form.text_field :name %>
+  </div>
+<br>
+  <div class="field">
+    <%= form.label :school %> <br>
+    <%= form.select :school, ["Conjuration", "Necromancy", "Evocation", "Abjuration", "Transmutation", "Divination", "Enchantment", "Illusion"], { prompt: 'Select a School'}  %>    
+  </div>
+<br>
+ <!-- Concentration -->
+<%= form.label :concentration %>  <br>
+<%= form.radio_button :concentration, "Yes", checked: false %> Yes
+<%= form.radio_button :concentration, "No", checked: true %> No
+<br>
+<br>
+  <div class="field">
+    <%= form.label :spellclasses, 'Classes' %> <br>
+    <%# form.collection_check_boxes :spellclass_ids, Spellclass.all, :id, :name %>
+<%= form.collection_check_boxes( :spellclass_ids, Spellclass.all, :id, :name) do |b| %>
+<%=   b.check_box style: "display: inline"%>
+<%=   b.label style: "display: inline" %>
+<%  end %>
+  </div>
+
+<br>
+
+<div class="field">
+    <%= form.label :description %> <br>
+    <%= form.text_field :description %>
+  </div>
+
+<br>
+
+  <div class="actions">
+    <%= form.submit("Submit") %>
+      </div>
+      
+
+
+
+
+<% end %>
+
